@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Flymer Client</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_web_login">WebLogin</string>
+    <string name="host_name" translatable="false">flymer</string>
+    <string name="c" translatable="false">c</string>
+    <string name="ts" translatable="false">ts</string>
+    <string name="repcount_url" translatable="false">http://flymer.ru/req/repcount</string>
+    <string name="h_accept" translatable="false">Accept</string>
+    <string name="accept_value" translatable="false">*/*</string>
+    <string name="h_host" translatable="false">Host</string>
+    <string name="host_value" translatable="false">flymer.ru</string>
+    <string name="h_connection" translatable="false">Connection</string>
+    <string name="connection_value" translatable="false">keep-alive</string>
+    <string name="h_cookie" translatable="false">Cookie</string>
+
+    <string name="notif_title" translatable="false">Flymer</string>
+    <string name="h_host_value" translatable="false">flymer.ru</string>
+    <string name="notif_value">New answers still wait for your resolution</string>
+    <string name="json_p_url" translatable="false">url</string>
+    <string name="json_p_replies" translatable="false">replies</string>
+    <string name="json_p_num" translatable="false">num</string>
+
+</resources>
