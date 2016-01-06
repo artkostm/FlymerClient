@@ -26,38 +26,4 @@ public class AlarmReceiver extends BroadcastReceiver {
         Intent service = new Intent(context, NewReplyCheckerService.class);
         context.startService(service);
     }
-
-    public void setAlarm(Context context) {
-        alarmMgr = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
-        Intent intent = new Intent(context, AlarmReceiver.class);
-        alarmIntent = PendingIntent.getBroadcast(context, 0, intent, 0);
-
-        Calendar calendar = Calendar.getInstance();
-        calendar.add(Calendar.SECOND, 15);
-        alarmMgr.setInexactRepeating(AlarmManager.RTC_WAKEUP,
-                calendar.getTimeInMillis(), 15000, alarmIntent);
-
-        ComponentName receiver = new ComponentName(context, BootReceiver.class);
-        PackageManager pm = context.getPackageManager();
-
-        pm.setComponentEnabledSetting(receiver,
-                PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
-                PackageManager.DONT_KILL_APP);
-    }
-
-    /**
-     * Cancels the alarm.
-     * @param context
-     */
-    public void cancelAlarm(Context context) {
-        if (alarmMgr!= null) {
-            alarmMgr.cancel(alarmIntent);
-        }
-        ComponentName receiver = new ComponentName(context, BootReceiver.class);
-        PackageManager pm = context.getPackageManager();
-
-        pm.setComponentEnabledSetting(receiver,
-                PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
-                PackageManager.DONT_KILL_APP);
-    }
 }

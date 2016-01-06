@@ -31,7 +31,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Get cookie"
+        android:text="Log in"
         android:id="@+id/login"
         android:layout_below="@+id/pass"
         android:layout_centerHorizontal="true"

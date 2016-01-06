@@ -19,6 +19,8 @@ import org.apache.http.Header;
 import org.apache.http.message.BasicHeader;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import ru.flymer.flymerclient.R;
@@ -61,12 +63,12 @@ public class NewReplyCheckerService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, final int startId) {
         if(!isOnline()){
-            return START_NOT_STICKY;
+            return START_STICKY;
         }
 
         Map<String, String> params = new HashMap<>();
         params.put("c", "1");
-        params.put("ts", "1421844317720");
+        params.put("ts", String.valueOf(new Date().getTime()));
 
         rh = client.get(this, "http://flymer.ru/req/repcount", new Header[]{
                 new BasicHeader("Accept", "*/*"),
@@ -74,7 +76,7 @@ public class NewReplyCheckerService extends Service {
                 new BasicHeader("Connection", "keep-alive"),
                 new BasicHeader("Cookie", cookie)
         }, new RequestParams(params), responseHandler);
-        return START_NOT_STICKY;
+        return START_STICKY;
     }
 
     public boolean isOnline() {
@@ -128,7 +130,7 @@ public class NewReplyCheckerService extends Service {
                     e.printStackTrace();
                 }finally {
                     client.cancelAllRequests(true);
-                    NewReplyCheckerService.this.stopSelf();
+//                    NewReplyCheckerService.this.stopSelf();
                     if(rh != null){
                         rh.shouldBeGarbageCollected();
                     }
@@ -139,6 +141,7 @@ public class NewReplyCheckerService extends Service {
 
     @Override
     public void onDestroy() {
+        client.cancelAllRequests(true);
         super.onDestroy();
     }
 }

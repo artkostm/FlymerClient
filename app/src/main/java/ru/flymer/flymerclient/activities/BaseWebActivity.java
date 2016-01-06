@@ -10,13 +10,12 @@ import java.util.Map;
 
 import ru.flymer.flymerclient.provider.DatabaseMetadata;
 import ru.flymer.flymerclient.receivers.AlarmReceiver;
+import ru.flymer.flymerclient.receivers.BootReceiver;
 
 /**
  * Created by Artsiom on 1/21/2015.
  */
 public abstract class BaseWebActivity extends ActionBarActivity {
-
-    private AlarmReceiver alarm = new AlarmReceiver();
 
     final Uri USER_URI = Uri
             .parse("content://ru.flymer.flymerclient.UserList/user");
@@ -38,7 +37,7 @@ public abstract class BaseWebActivity extends ActionBarActivity {
         cv.put(DatabaseMetadata.USER_PASSWORD, credentials[1]);
         Uri newUri = getContentResolver().insert(USER_URI, cv);
         this.cookies = cookies;
-        alarm.setAlarm(this);
+        BootReceiver.setAlarm(this);
         this.finish();
     }
 
